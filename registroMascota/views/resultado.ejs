@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página resultado registro de mascotas</title>
+</head>
+<body>
+    <h1>Resultado del registro</h1>
+    <p>
+        <% if (mascota.nombre && mascota.nombre.trim()){ %>
+            Tu mascota <%=mascota.nombre %> ha sido registrada.
+        <% } else {  %>
+            No has introducido el nombre de la mascota.
+        <% } %>
+    </p>
+    <p>
+        <% if (mascota.edad) { %>
+            La edad de tu mascota es: <%= mascota.edad %> años. 
+       <% } else { %>
+        No has introducido edad
+       <% } %>
+    </p>
+
+    <p>
+        <% if(mascota.tipo) { %>
+            Tu mascosta es un :  <%= mascota.tipo %>
+    <% } else { %>
+       No has proporcionado el tipo de animal que es.
+    <% } %>
+    </p>
+    
+    <p>
+        <% if (mascota.tamanio) { %>
+            El tamaño de tu mascota es <%= mascota.tamanio %>
+    <% } else { %>
+        No has seleccionado un tamaño.
+    <% } %>
+    </p>
+    <p>
+        <% 
+            let actividadesParaMostrar = mascota.actividades;
+
+            // si solo es un valor, no es un arraya :
+            // lo convertimos a un Array para poder usar forEach .
+            if (actividadesParaMostrar && !Array.isArray(actividadesParaMostrar)) {
+                actividadesParaMostrar = [actividadesParaMostrar];
+            }
+        %>
+            <% if(actividadesParaMostrar && actividadesParaMostrar.length > 0 ) { %>
+            Las actividades favoritas de tu mascosta son: 
+            <ul>
+                <% actividadesParaMostrar.forEach(function(actividad) { %> 
+                <li><%= actividad %> </li>
+                <% }); %>
+            </ul>        
+        <% } else { %>
+            No has seleccionado actividades.
+        <% } %>
+        
+
+    </p>
+</body>
+</html>

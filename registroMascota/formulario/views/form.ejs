@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de registro</title>
+</head>
+<body>
+    <!--lo q ponemos en el action es la ruta o datos q se envian a esa ruta q ponemos, si queremos saltar a otra pagina la ponemos ahí. si yo pongo /form se encarga el app.ejs, por eso alli pongo app.pos(/form)-->
+    <!--si yo pongo el form, ocurre una recarra de la propia pagina-->
+    <form action="/form" method="POST"> <!-- el metodo post es que yo quiero enviar esos datos.en un post los datos no van en url si no en el body de la petición, es mas seguro q el get y no es visible para los usuarios, co nel get, los datos viajas en la url.-->
+        <label >Nombre:
+            <input type="text" name="nombre" value="<%= nombre ||'' %>" required/> <!--required es q es obligatorio. y si no se cubre, le ponemos vacio para q al menos se inicie. este codigo es q metemos js en ejs dentro de html. si no pone nada , salen las comillas.-->
+        </label> <!--si el label rodea al input es q forman parte de un unico bloque, es bueno para accesibilidad,-->
+
+        <label>Edad
+            <input type="number" name="edad" min="0" value="<%= edad || '' %>"/> <!--si ponemos type number no es smp para numeros, lo q hacemos es meter text y con js controlamos q sea un numero.-->
+        </label>
+
+        <label >Ciudad:
+            <select name="ciudad">
+                <option value="">-- Selecciona --</option> <!--lo dejo vacio el value para q el usuario vea solo el selecciona.-->
+                <option value="Madrid" <%= ciudad ==='Madrid' ? 'selected' : '' %>>Madrid</option> 
+                                                      <!--  ? si es true y si no : '' esta funcion es en js como hacer un if else.-->
+                <option value="Barcelona"<%= ciudad ==='Barcelona' ? 'selected' : '' %>>Barcelona</option>
+                <option value="Valencia"<%= ciudad ==='Valencia' ? 'selected' : '' %>>Valencia</option>
+            </select>
+        </label>
+
+        <fieldset> <!--para agrupar campos-->
+            <label>
+            <input type="checkbox" name="intereses" value="deportes" 
+            
+            
+            
+           <%= (intereses||[]).includes('deportes')  ?  checked : '' %> 
+           <!--tenemos q ver si intereses(grupo) incluye deportes: interes||[] significa q extraemos el vector q guarda los intereses marcados.-->
+
+
+            />Deporte
+            </label>
+            <label>
+            <input type="checkbox" name="intereses" value="palomas"
+            />palomas
+            </label>
+            <label>
+            <input type="checkbox" name="intereses" value="juegos"
+            />Juegos</label>
+        </fieldset>
+
+    </form>
+
+
+
+</body>
+</html>

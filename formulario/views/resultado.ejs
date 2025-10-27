@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página resultado</title>
+</head>
+<body>
+    <h1>Resultado del Formulario</h1>
+    
+    <p>
+    <%   if ( nombre && nombre.trim()){ %>
+        Bienvenido <%= nombre %>
+    <%   }  else { %>
+        No has introducido tu nombre.      
+    <%  } %>
+    </p>
+
+    <p>
+    <% if ( edad ) { %>
+     Tu edad es de <%= edad %> años
+    <% if (edad < 18) {   %>
+        por lo que eres menor de edad.
+    <% } else { %>
+       por lo que eres mayor de edad.
+    <%  } %>
+    <% } else { %>
+        No se ha proporcionado la edad.
+    <% } %>
+    </p>
+
+    <p>
+    <% if (ciudad){ %>
+        Vives en <%= ciudad %>
+    <% } else { %>
+        No has proporcionado la ciudad.
+    <% } %>
+    </p>
+
+    <p>
+        <% if (intereses) { %>
+            Tus intereses son <%= intereses %>
+        <% } else { %>
+            No tienes intereses.
+        <% } %>
+    </p>
+
+    <p>
+       <a href="index.html">Volver a inicio</a>
+    </p>
+   
+</body>
+</html>

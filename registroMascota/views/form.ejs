@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Mascota</title>
+</head>
+<body>
+
+    <!-- mostrar mensajes de error: -->
+    <% if(typeof errores !== 'undefined' && errores.length > 0){ %>  <!-- ¡Chequeo defensivo! -->
+        <h3>Atención: se encontraron errores en el formulario</h3>
+        <ul>
+            <% errores.forEach(function(error) { %>
+                <li> <%= error %> </li>
+            <% }); %>
+        </ul>
+    <% } %>
+
+    <form action="/form" method="POST">
+        <label >Nombre de la mascota
+            <input type="text" name="nombre" value="<%= nombre || '' %>" required/>
+        </label>
+
+        <label >Edad
+            <input type="number" name="edad" min="0" value="<%= edad || '' %>"/>
+        </label>
+
+        <label >Tipo de animal 
+            <select name="tipo" required >
+                <option value="">--Selecciona el tipo de animal--</option>
+                <option value="perro" <%= tipo ==='perro' ? 'selected' :''%>>Perro</option>
+                <option value="gato" <%= tipo === 'gato' ? 'selected' : ''%>>Gato</option>
+                <option value="ave" <%= tipo ==='ave' ? 'selected' : ''%>>Ave</option>
+                <option value="otro"<%= tipo === 'otro' ? 'selected' : '' %>>Otros</option>
+            </select>
+        </label>
+
+        <fieldset>
+            <legend>Tamaño</legend>
+
+            <input type="radio" id="pequenio" name="tamanio" value="pequenio" <%= typeof tamanio !== 'undefined' && tamanio ==='pequenio' ? 'checked' : ''%>>
+            <label for="pequenio">Pequeño</label>
+
+            <input type="radio" id="mediano" name="tamanio" value="mediano" <%= typeof tamanio !== 'undefined' && tamanio === 'mediano' ? 'checked' : ''%>>
+            <label for="mediano">Mediano</label>
+
+            <input type="radio" id="grande" name="tamanio" value="grande" <%= typeof tamanio !=='undefined' && tamanio ==='grande' ? 'checked' : ''%>>
+            <label for="grande">Grande</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Actividades favoritas</legend>
+            <!-- Lógica para mantener las checkboxes marcadas (opcional pero recomendada) -->
+            <% const actividadesArray = Array.isArray(actividades) ? actividades : [actividades]; %> 
+            
+            <label>
+                <input type="checkbox" name="actividades" value="correr" <%= actividadesArray.includes('correr') ? 'checked' : '' %>> Correr
+            </label>
+
+            <label>
+                <input type="checkbox" name="actividades" value="dormir" <%= actividadesArray.includes('dormir') ? 'checked' : '' %>> Dormir
+            </label>
+
+            <label >
+                <input type="checkbox" name="actividades" value="jugar" <%= actividadesArray.includes('jugar') ? 'checked' : '' %>> Jugar
+            </label>
+
+            <label>
+                <input type="checkbox" name="actividades" value="comer" <%= actividadesArray.includes('comer') ? 'checked' : '' %>> Comer
+            </label>
+        </fieldset>
+
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
