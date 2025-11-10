@@ -8,45 +8,44 @@
 <body>
     <h1>Resultado del Formulario</h1>
     
-    <p>
-    <%   if ( nombre && nombre.trim()){ %>
-        Bienvenido <%= nombre %>
-    <%   }  else { %>
-        No has introducido tu nombre.      
-    <%  } %>
-    </p>
+    <p><strong>Nombre:</strong>   <%= nombre %></p>
+    <p><strong>Ciudad</strong>    <%= ciudad %></p>
 
-    <p>
+    <p> <strong>
     <% if ( edad ) { %>
-     Tu edad es de <%= edad %> años
-    <% if (edad < 18) {   %>
-        por lo que eres menor de edad.
+        Tu edad es de <%= edad %> años,
+    <% if (Number(edad) >= 18) {   %>
+       <p style="color: green;">Eres mayor de edad.</p> 
     <% } else { %>
-       por lo que eres mayor de edad.
+      <p style="color: orange;">Eres menor de edad.</p> 
     <%  } %>
     <% } else { %>
-        No se ha proporcionado la edad.
+        <p>No se ha proporcionado la edad.</p>
     <% } %>
+    </p></strong>
+
+    <h2>Intereses: </h2>
+    <p>
+        <% if (intereses  && intereses.length ) { %>
+        
+        <ul>
+
+            <% intereses.forEach( i => {  %>
+
+                <li> <%= i %> </li>
+
+            <% }) %>
+        </ul>
+
+        <% }else { %>
+            <p>Sin intereses</p>
+        <% }  %>
+        
     </p>
 
     <p>
-    <% if (ciudad){ %>
-        Vives en <%= ciudad %>
-    <% } else { %>
-        No has proporcionado la ciudad.
-    <% } %>
-    </p>
-
-    <p>
-        <% if (intereses) { %>
-            Tus intereses son <%= intereses %>
-        <% } else { %>
-            No tienes intereses.
-        <% } %>
-    </p>
-
-    <p>
-       <a href="index.html">Volver a inicio</a>
+       <a href="/form">Volver al formulario</a>
+       <a href="/">Inicio</a>
     </p>
    
 </body>

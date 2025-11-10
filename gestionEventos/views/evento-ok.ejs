@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento</title>
+</head>
+<body>
+    <h1>Resultado de los eventos confirmados</h1>
+    <p> <strong>Nombre: </strong><%= nombre%></p>
+
+    <p> <strong>Fecha: </strong><%= fecha %></p>
+    <p> <strong>Ciudad: </strong><%= ciudad %></p>
+    <p> <strong>Tipo </strong><%=  tipo  %></p>
+
+        <% if (tipo === 'online') { %>
+            <p>Tu evento se realizará de forma virtual</p>
+        <% } else { %>
+            <p>Recuerda llegar con antelación al lugar del evento.</p>
+        <% } %>
+
+   <h2>Intereses </h2>
+   <% if (intereses && intereses.length > 0 ){ %>
+   <ul>
+    <% intereses.forEach(interes => { %>
+        <li><%= interes %></li>
+        <% }) %>
+   </ul>
+   <% } else { %>
+    <p>No se han seleccionado intereses</p>
+    <% } %>
+
+    <p><a href="/evento">Volver al formulario</a></p>
+</body>
+</html>

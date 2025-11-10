@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+</head>
+<body>
+    <!--Mensajes de error-->
+    <% if (errores && errores.length > 0) { %>
+        <p>Por favor, corrija los errores : </p>
+        <ul>
+            <% errores.forEach(error => { %>
+                <li> <%= error %> </li>
+        <%  }) %>
+        </ul>
+    <% } %>
+
+        <form action="/evento" method="POST">
+
+            <label >Nombre del evento
+                <input type="text" name="nombre" value="<%= nombre || '' %> " required minlength="3" />
+            </label>
+        
+            <label > Fecha del evento
+                <input type="date" name="fecha" value="<%= fecha || '' %>" required />
+            </label>
+
+            <label >Ciudad
+                <select name="ciudad" >
+                    <option value="">Selecciona la ciudad donde se realiza el evento:</option>
+                    <option value="Madrid" <%= ciudad === 'Madrid' ? 'selected' : '' %>>Madrid</option>
+                    <option value="Sevilla" <%= ciudad === 'Sevilla' ? 'selected' : '' %>>Sevilla</option>
+                    <option value="Barcelona" <%= ciudad === 'Barcelona' ? 'selected' : '' %>>Barcelona</option>
+                    <option value="Granada" <%= ciudad === 'Granada' ? 'selected' : '' %>>Granada</option>
+                    <option value="Malaga" <%= ciudad === 'Malaga' ? 'selected' : '' %>>Malaga</option>
+                    <option value="otra" <%= ciudad === 'otra' ? 'selected' : '' %>>otra</option>
+                </select>
+            </label>
+
+            <fieldset>
+                <legend>Tipo de evento</legend>
+                <label >
+                    <input type="radio" name="tipo" value="presencial"
+                    <%= tipo === 'presencial' ? 'checked' : '' %> 
+                    required
+                    />Presencial
+                </label>
+
+                <label > 
+                    <input type="radio" name="tipo" value="online"
+                    <%= tipo === 'online' ? 'checked' : '' %> 
+                    required /> Online
+                </label>
+            </fieldset>
+            
+            <fieldset>
+                <Legend>Intereses del evento</Legend>
+                <label >
+                    <input type="checkbox" name="intereses" value="deporte"
+                    <%= (intereses || []).includes('deporte') ? 'checked' : '' %>
+                    />Deporte
+                </label>
+
+                <label >
+                    <input type="checkbox" name="intereses" value="musica"
+                     <%= (intereses || []).includes('musica') ? 'checked' : '' %>
+                    />Música
+                </label>
+
+                <label >
+                    <input type="checkbox" name="intereses" value="teatro"
+                     <%= (intereses || []).includes('teatro') ? 'checked' : '' %>
+                    />Teatro
+                </label>
+
+                 <label >
+                    <input type="checkbox" name="intereses" value="naturaleza"
+                     <%= (intereses || []).includes('naturaleza') ? 'checked' : '' %>
+                    />Naturaleza
+                </label>
+            </fieldset>
+
+            <button type="submit">Registrar evento</button>
+
+
+
+
+
+        </form>
+
+    
+
+
+
+</body>
+</html>
